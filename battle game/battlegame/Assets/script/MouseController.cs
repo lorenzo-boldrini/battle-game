@@ -6,6 +6,8 @@ using UnityEngine.AI;
 public class MouseController : MonoBehaviour
 {
     GameObject Soldier;
+
+    public LayerMask ignoreRaycast;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +22,7 @@ public class MouseController : MonoBehaviour
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out hit, 100))
+            if (Physics.Raycast(ray, out hit, 100, ignoreRaycast))
             {
                 if (hit.transform.gameObject.tag == "soldier")
                 {
