@@ -771,4 +771,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Camera: {fileID: 963194227}
-  Rotate: 0
+  Rotate: 1
