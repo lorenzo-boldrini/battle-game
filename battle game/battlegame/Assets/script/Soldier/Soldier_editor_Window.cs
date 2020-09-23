@@ -14,3 +14,5 @@ public class Soldier_editor_Window : EditorWindow
         window.Show();
     }
 }
+
+
