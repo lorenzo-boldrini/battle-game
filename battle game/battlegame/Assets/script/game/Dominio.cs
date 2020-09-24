@@ -6,71 +6,62 @@ public class Dominio : MonoBehaviour
 {
     public bool dominioY;
 
-    public int tempoDiDioco;
+    int tempoPerDominare = 20;
 
     public int tempoDominioBuoni;
     public int tempoDominioCattivi;
 
-    public bool dominance;
     public bool dominanceBuoni;
     public bool dominanceCattivi;
 
     public List<Soldier> buoni = new List<Soldier>();
     public List<Soldier> cattivi = new List<Soldier>();
 
-    // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(DurataPartita());
         StartCoroutine(DominioCounter());
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (dominioY == true)
         {
-            if (tempoDominioBuoni >= 30)
+            if (tempoDominioBuoni >= tempoPerDominare)
             {
                 GameManager.Singleton.dominioYBuoni = true;
             }
 
-            if (tempoDominioCattivi >= 30)
+            if (tempoDominioCattivi >= tempoPerDominare)
             {
                 GameManager.Singleton.dominioYCattivi = true;
             }
         }
         else
         {
-            if (tempoDominioBuoni >= 30)
+            if (tempoDominioBuoni >= tempoPerDominare)
             {
                 GameManager.Singleton.dominioZBuoni = true;
             }
 
-            if (tempoDominioCattivi >= 30)
+            if (tempoDominioCattivi >= tempoPerDominare)
             {
                 GameManager.Singleton.dominioZCattivi = true;
             }
         }
 
-        if (tempoDiDioco >= 30) //SAREBBERO 300 SECONDI VISTO CHE L ENUMERATOR SI AGGIORNA OGNI 10
+        if (GameManager.Singleton.timeOut)
         {
-            GameManager.Singleton.TimeOut = false;
-
             if (dominioY == true)
             {
                 GameManager.Singleton.tempoDominioYBuoni = tempoDominioBuoni;
                 GameManager.Singleton.tempoDominioYCattivi = tempoDominioCattivi;
-
             }
             else
             {
                 GameManager.Singleton.tempoDominioZBuoni = tempoDominioBuoni;
                 GameManager.Singleton.tempoDominioZCattivi = tempoDominioCattivi;
             }
-
-        }
-       
+        }      
     }
 
     private void OnTriggerEnter(Collider other)
@@ -158,12 +149,6 @@ public class Dominio : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
             //POTREBBE RALLENTARE IL GIOCO, QUESTA CONDIZIONE SI VERIFICA QUANDO IL PUNTO DI DOMINIO E' VUOTO, AUMENTARE I SECONDI PER DIMINUIRE I CICLI DEL WHILE MA COMPORTA UN RITARDO NEL MOMENTO IN CUI ENTRA UN PERSONAGGIO E IL CICLO E' GIA' PARTITO 
        }
-    }
-
-    IEnumerator DurataPartita()
-    {
-        tempoDiDioco++;
-        yield return new WaitForSeconds(10f); 
     }
 }
 
