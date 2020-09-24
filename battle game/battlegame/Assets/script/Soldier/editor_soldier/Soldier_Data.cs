@@ -6,8 +6,8 @@ public class Soldier_Data : ScriptableObject
 {
     //aspetti grafici
     public GameObject ModelloSoldato;
-    public Sprite immagineSoldato;
     // statistiche base soldato
+    public string SoldierName;
     public float VelocitaMovimento;
     public float AreaDiVista;
     public float Esperienza;
