@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+#if UNITY_EDITOR
 public class Soldier_editor_Window : EditorWindow
 {
     public Basic_Soldier newsoldierdata;
@@ -96,5 +97,5 @@ public class Soldier_editor_Window : EditorWindow
         soldato.GetComponent<soldato>().soldier_data_prefab = newsoldierdata;
     }
 }
-
+#endif
 
