@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Soldier_Data : ScriptableObject
 {
     //aspetti grafici
@@ -9,6 +10,7 @@ public class Soldier_Data : ScriptableObject
     // statistiche base soldato
     public string SoldierName;
     public float VelocitaMovimento;
+    [Range(0,360)]
     public float AreaDiVista;
     public float Esperienza;
     public float TempoDiReazione;
