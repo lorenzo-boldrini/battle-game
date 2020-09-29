@@ -17,5 +17,5 @@ MonoBehaviour:
   VelocitaMovimento: 5
   AreaDiVista: 60
   Esperienza: 0
-  TempoDiReazione: 0
+  TempoDiReazione: 0.1
   Vita: 0
