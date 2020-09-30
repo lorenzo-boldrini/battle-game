@@ -29,22 +29,26 @@ public class Gun : MonoBehaviour
             Vector3 watch_to = _padreArma.VisibleTarget[0].position - transform.position;
 
             Quaternion targetRotatio = Quaternion.LookRotation(watch_to);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotatio, Time.deltaTime / mobilitaArma /*da sostituire*/);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotatio, mobilitaArma * Time.deltaTime);
         }
     }
 
+    //fare funzione random che da precisione restitui
     public void Shoot(/*float precisione*/)
     {
-        RaycastHit Hit;
-       if(Physics.Raycast(puntoDiSparo.transform.position, transform.forward, out Hit, range) && Time.time >= NextFire)
+        if (Time.time >= NextFire)
         {
+            NextFire = Time.time + 1 / rateoDiFuoco;
             FireParticle.Play();
-            NextFire = Time.time + 1/rateoDiFuoco;
-            Hit.transform.gameObject.GetComponent<soldier_IA>().TakeDamage(damage);
-        }
-        else if (!Physics.Raycast(puntoDiSparo.transform.position, transform.forward, out Hit, range))
-        {
-            Debug.Log("non hai colpito niente");
+            RaycastHit Hit;
+            if (Physics.Raycast(puntoDiSparo.transform.position, transform.forward, out Hit, range))
+            {
+                Hit.transform.gameObject.GetComponent<soldier_IA>().TakeDamage(damage);
+            }
+            else if (!Physics.Raycast(puntoDiSparo.transform.position, transform.forward, out Hit, range))
+            {
+                Debug.Log("non hai colpito niente");
+            }
         }
     }
 

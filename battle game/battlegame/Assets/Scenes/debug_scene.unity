@@ -5559,7 +5559,7 @@ MonoBehaviour:
   range: 100
   _padreArma: {fileID: 0}
   puntoDiSparo: {fileID: 1787582104}
-  mobilitaArma: 1
+  mobilitaArma: 0.1
   rateoDiFuoco: 5
   FireParticle: {fileID: 884548443}
 --- !u!1001 &6363591486242099261
