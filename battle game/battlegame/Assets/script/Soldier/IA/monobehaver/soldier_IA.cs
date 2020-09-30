@@ -8,10 +8,13 @@ public class soldier_IA : MonoBehaviour
 {
     NavMeshAgent _nma;
     public Soldier_Data soldierdata;
-
+    Gun _soldierGun;
     private void Awake()
     {
         _nma = GetComponent<NavMeshAgent>();
+
+        _soldierGun = GetComponentInChildren<Gun>();
+
     }
     // Start is called before the first frame update
     void Start()
@@ -61,7 +64,6 @@ public class soldier_IA : MonoBehaviour
 
     private void Update()
     {
-        //RagruppaNemici();
         if (VisibleTarget.Count > 0)
         {
             _nma.updateRotation = false;
@@ -69,6 +71,9 @@ public class soldier_IA : MonoBehaviour
 
             Quaternion targetRotatio = Quaternion.LookRotation(watch_to);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotatio,Time.deltaTime / soldierdata.TempoDiReazione);
+
+            //spara  ---> nella funzione Shoot deve essere fornita la precisone del soldato
+            _soldierGun.Shoot(/*soldierdata.PRecisone*/);
         }
         else
         {

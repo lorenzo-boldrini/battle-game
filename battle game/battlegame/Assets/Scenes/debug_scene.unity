@@ -5151,7 +5151,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e2568be7998faa44bd2387ecae66ed3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soldierdata: {fileID: 11400000, guid: 50be154745c0a404fb60772f586f9cce, type: 2}
+  soldierdata:
+    SoldierName: 
+    VelocitaMovimento: 0
+    AreaDiVista: 0
+    Esperienza: 0
+    TempoDiReazione: 0
+    Precisone: 0
+    Vita: 1000
   AreaDiVista: 10
   TargetMask:
     serializedVersion: 2
@@ -5283,7 +5290,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e2568be7998faa44bd2387ecae66ed3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soldierdata: {fileID: 11400000, guid: 50be154745c0a404fb60772f586f9cce, type: 2}
+  soldierdata:
+    SoldierName: 
+    VelocitaMovimento: 5
+    AreaDiVista: 60
+    Esperienza: 0
+    TempoDiReazione: 0.2
+    Precisone: 0
+    Vita: 0
   AreaDiVista: 10
   TargetMask:
     serializedVersion: 2

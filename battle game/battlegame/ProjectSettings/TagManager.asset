@@ -6,6 +6,7 @@ TagManager:
   tags:
   - soldier
   - Plane
+  - Gun
   layers:
   - Default
   - TransparentFX

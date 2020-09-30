@@ -30,21 +30,21 @@ public class Gun : MonoBehaviour
 
             Quaternion targetRotatio = Quaternion.LookRotation(watch_to);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotatio, Time.deltaTime / mobilitaArma /*da sostituire*/);
-
-
-            Shoot();
         }
     }
 
-    void Shoot()
+    public void Shoot(/*float precisione*/)
     {
         RaycastHit Hit;
        if(Physics.Raycast(puntoDiSparo.transform.position, transform.forward, out Hit, range) && Time.time >= NextFire)
         {
             FireParticle.Play();
             NextFire = Time.time + 1/rateoDiFuoco;
-            Debug.Log(Hit.transform.name);
             Hit.transform.gameObject.GetComponent<soldier_IA>().TakeDamage(damage);
+        }
+        else if (!Physics.Raycast(puntoDiSparo.transform.position, transform.forward, out Hit, range))
+        {
+            Debug.Log("non hai colpito niente");
         }
     }
 
