@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -6,7 +7,7 @@ using UnityEngine.AI;
 public class soldier_IA : MonoBehaviour
 {
     NavMeshAgent _nma;
-    public Basic_Soldier soldierdata;
+    public Soldier_Data soldierdata;
 
     private void Awake()
     {
@@ -17,7 +18,7 @@ public class soldier_IA : MonoBehaviour
     {
         _nma.speed = soldierdata.VelocitaMovimento;
         //avvio tempo di reazione su area di vista
-        //StartCoroutine("TempoDiReazioneVista", soldierdata.TempoDiReazione);
+        StartCoroutine("TempoDiReazioneVista", soldierdata.TempoDiReazione);
     }
 
     // area di vista
@@ -29,14 +30,14 @@ public class soldier_IA : MonoBehaviour
 
     public List<Transform> VisibleTarget = new List<Transform>();
 
-    /*IEnumerator TempoDiReazioneVista(float ritardo)
+    IEnumerator TempoDiReazioneVista(float ritardo)
     {
         while (true)
         {
             yield return new WaitForSeconds(ritardo);
             RagruppaNemici();
         }
-    }*/
+    }
 
     void RagruppaNemici()
     {
@@ -60,7 +61,7 @@ public class soldier_IA : MonoBehaviour
 
     private void Update()
     {
-        RagruppaNemici();
+        //RagruppaNemici();
         if (VisibleTarget.Count > 0)
         {
             _nma.updateRotation = false;
@@ -86,5 +87,21 @@ public class soldier_IA : MonoBehaviour
 
 
 
-    //
+    public void TakeDamage(int damage)
+    {
+        if (soldierdata.Vita > 0)
+        {
+            soldierdata.Vita -= damage;
+            Debug.Log(soldierdata.Vita);
+        }
+        if(soldierdata.Vita == 0)
+        {
+            Death();
+        }
+    }
+
+    void Death()
+    {
+        GetComponent<MeshRenderer>().material.color = Color.red;
+    }
 }

@@ -14,5 +14,5 @@ public class Soldier_Data : ScriptableObject
     public float AreaDiVista;
     public float Esperienza;
     public float TempoDiReazione;
-    public float Vita;
+    public int Vita;
 }

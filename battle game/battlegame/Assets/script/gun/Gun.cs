@@ -4,13 +4,34 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-    public float damage = 10;
+    public int damage = 10;
     public float range = 100;
+    public soldier_IA _padreArma;
+    public GameObject puntoDiSparo;
 
+    float NextFire;
+
+    //variablie di test da sostituire con classe
+    public float mobilitaArma;
+    public float rateoDiFuoco;
+
+    //aspetto grafico
+    public ParticleSystem FireParticle;
+    private void Start()
+    {
+        _padreArma = GetComponentInParent<soldier_IA>();
+    }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        // mobilita arma
+        if(_padreArma.VisibleTarget.Count > 0)
         {
+            Vector3 watch_to = _padreArma.VisibleTarget[0].position - transform.position;
+
+            Quaternion targetRotatio = Quaternion.LookRotation(watch_to);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotatio, Time.deltaTime / mobilitaArma /*da sostituire*/);
+
+
             Shoot();
         }
     }
@@ -18,15 +39,18 @@ public class Gun : MonoBehaviour
     void Shoot()
     {
         RaycastHit Hit;
-       if(Physics.Raycast(transform.position, transform.forward, out Hit, range))
+       if(Physics.Raycast(puntoDiSparo.transform.position, transform.forward, out Hit, range) && Time.time >= NextFire)
         {
+            FireParticle.Play();
+            NextFire = Time.time + 1/rateoDiFuoco;
             Debug.Log(Hit.transform.name);
+            Hit.transform.gameObject.GetComponent<soldier_IA>().TakeDamage(damage);
         }
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.cyan;
-        Gizmos.DrawRay(transform.position, transform.forward * range);
+        Gizmos.DrawRay(puntoDiSparo.transform.position, transform.forward * range);
     }
 }

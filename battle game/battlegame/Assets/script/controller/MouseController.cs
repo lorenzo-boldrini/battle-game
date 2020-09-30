@@ -60,7 +60,6 @@ public class MouseController : MonoBehaviour
                 {
                     Soldier = hit.transform.gameObject;
                     Soldier.GetComponent<MeshRenderer>().material.SetColor("_color", Color.green);
-                    print(Soldier);
                 }
             }
         }
