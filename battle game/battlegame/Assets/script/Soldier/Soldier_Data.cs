@@ -11,6 +11,7 @@ public class Soldier_Data
     public float AreaDiVista;
     public float Esperienza;
     public float TempoDiReazione;
+    [Range(0, 360)]
     public float Precisone;
     public int Vita;
 }
