@@ -48,7 +48,7 @@ public class MouseController : MonoBehaviour
             }
         }
 
-
+#if UNITY_EDITOR
         if (Input.GetMouseButtonDown(0) && Soldier == null)
         {
             RaycastHit hit;
@@ -60,7 +60,6 @@ public class MouseController : MonoBehaviour
                 {
                     Soldier = hit.transform.gameObject;
                     Soldier.GetComponent<MeshRenderer>().material.SetColor("_color", Color.green);
-                    print(Soldier);
                 }
             }
         }
@@ -80,5 +79,6 @@ public class MouseController : MonoBehaviour
                 }
             }
         }
+#endif
     }
 }
