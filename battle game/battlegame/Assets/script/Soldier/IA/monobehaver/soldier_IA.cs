@@ -16,10 +16,7 @@ public class soldier_IA : MonoBehaviour
     Gun _soldierGun;
 
 
-    GameObject HealthBar;
-    public GameObject HealthBarPrefab;
-    public GameObject HealthbarPather;
-
+    public GameObject HealthBar;
 
     private void Awake()
     {
@@ -27,8 +24,7 @@ public class soldier_IA : MonoBehaviour
         _soldierGun = GetComponentInChildren<Gun>();
 
         //genera healthbar e passa i dati
-        HealthBar = Instantiate(HealthBarPrefab, transform.position + new Vector3(0, 1.5f, 0), Quaternion.identity, HealthbarPather.transform.parent);
-        HealthBar.GetComponent<health_bar>().starting_health = soldierdata.Vita;
+        //HealthBar.GetComponent<health_bar>().starting_health = soldierdata.Vita;
     }
     // Start is called before the first frame update
     void Start()
@@ -78,7 +74,7 @@ public class soldier_IA : MonoBehaviour
 
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (VisibleTarget.Count > 0)
         {
@@ -89,7 +85,7 @@ public class soldier_IA : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotatio, Time.deltaTime / soldierdata.TempoDiReazione);
 
             //spara  ---> nella funzione Shoot deve essere fornita la precisone del soldato
-            _soldierGun.Shoot(/*soldierdata.Precisone*/);
+            _soldierGun.Shoot();//soldierdata.Precisone
         }
         else
         {
